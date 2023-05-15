@@ -34,4 +34,4 @@ df = df.drop_duplicates()
 df = df.sort_values("CSDUID")
 
 # save to file
-df.to_csv("ggh-csd-cd-cma.csv")
+df.to_csv("ggh-csd-cd-cma.csv", index = None)
