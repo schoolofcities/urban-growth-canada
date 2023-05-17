@@ -72,7 +72,7 @@
 		background-color: #fff;
 		border: solid 2px rgb(225, 225, 225);
 		border-radius: 4px;
-		top: 107px;
+		top: 157px;
 		left: 6px;
 		z-index: 1;
 		opacity: 0.93;

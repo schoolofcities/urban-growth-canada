@@ -7,7 +7,7 @@
 	import Select from "./lib/Select.svelte"
 	import Top from "./lib/Top.svelte"
 
-	mapboxgl.accessToken = 'pk.eyJ1Ijoic2Nob29sb2ZjaXRpZXMiLCJhIjoiY2w3aml0dHdlMHlpazNwbWh0em4xOHNlaCJ9.fXNtPGq0DqYiFvPH6p4fjQ';
+	mapboxgl.accessToken = 'pk.eyJ1Ijoic2Nob29sb2ZjaXRpZXMiLCJhIjoiY2w2Z2xhOXprMTYzczNlcHNjMnNvdGlmNCJ9.lOgVHrajc1L-LlU0as2i2A';
 
 	const data = Places.features;
 
@@ -99,8 +99,11 @@
 <Top/>
 
 <div id='map-wrapper' class="{pageWidth < 755 ? 'maps-small' : 'maps-big'}" >
-	<!-- class="{pageWidth < 755 ? 'maps-small' : 'maps-big'}" -->
-<div id="map" bind:offsetWidth={pageWidth} ></div>
+	<div id="map" bind:offsetWidth={pageWidth} ></div>
+</div>
+
+<div id="metric">
+	<!-- stuff -->
 </div>
 
 <div id="search">
@@ -121,18 +124,6 @@
 <Select ctuid={ctuid}/>
 
 <Info pageWidth={pageWidth}/>
-
-
-
-
-
-
-
-
-
-
-
-
 
 </main>
 
@@ -155,12 +146,23 @@
 		margin-bottom: -15px;
 	}
 
+	#metric {
+		position: absolute;
+		top: 60px;
+		left: 5px;
+		height: 42px;
+		width: 256px;
+		background-color: white;
+		border: solid 2px lightgrey;
+		z-index: 999;
+
+	}
 
 
 	:global([data-svelte-search]) {
 		/* height: 50px; */
 		border: solid 1px lightgrey;
-		border-radius: 4px;
+		border-radius: 0px;
 		background-color: none;
 	}
 	:global([data-svelte-search] li) {
@@ -185,7 +187,7 @@
 	#search {
 		position: absolute;
 		width: 260px;
-		top: 62px;
+		top: 92px;
 		left: 5px;
 		z-index: 99;
 		opacity: 0.93;
