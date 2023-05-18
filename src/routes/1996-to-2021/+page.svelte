@@ -16,15 +16,28 @@
 
 	let pageWidth;
 
-	let metric = 'population';
+	let metric = '';
+
+	const hash = window.location.hash.substring(1);
+	if (hash === 'population') {
+		window.location.hash = 'population';
+		metric = 'population';
+	} else if (hash === 'dwellings') {
+		window.location.hash = 'dwellings';
+		metric = 'dwellings';
+	} else {
+		window.location.hash = 'population';
+		metric = 'population';
+	}
+	
 
 	function setMetric(value) {
 		
 		if (map) {
 			metric = value;
-			console.log(metric);
 
 			if (metric === 'population') {
+				window.location.hash = 'population';
 				map.setPaintProperty('pop_growth', 'circle-opacity', 0.8);
 				map.setPaintProperty('pop_decline', 'circle-opacity', 0.8);
 				map.setPaintProperty('pop_growth', 'circle-stroke-opacity', 1);
@@ -35,6 +48,7 @@
 				map.setPaintProperty('dwe_decline', 'circle-stroke-opacity', 0);
 			} 
 			else {
+				window.location.hash = 'dwellings';
 				map.setPaintProperty('pop_growth', 'circle-opacity', 0);
 				map.setPaintProperty('pop_decline', 'circle-opacity', 0);
 				map.setPaintProperty('pop_growth', 'circle-stroke-opacity', 0);
@@ -47,6 +61,8 @@
 		}
 		
 	}
+
+	
 	
 	
 	onMount(() => {
@@ -103,13 +119,20 @@
 
 		});
 
-		map.on('load', () => {
-			const layers = map.getStyle().layers;
-			const layerNames = layers.map(layer => layer.id);
-			console.log(layerNames);
+		map.on('load', function() {
+			setMetric(metric);
+			if (metric === "population") {
+				document.getElementById('metric-population').classList.add('selected-metric');
+				document.getElementById('metric-population').classList.remove('not-selected-metric');
+				document.getElementById('metric-dwelling').classList.remove('selected-metric');
+				document.getElementById('metric-dwelling').classList.add('not-selected-metric');
+			} else {
+				document.getElementById('metric-population').classList.remove('selected-metric');
+				document.getElementById('metric-population').classList.add('not-selected-metric');
+				document.getElementById('metric-dwelling').classList.add('selected-metric');
+				document.getElementById('metric-dwelling').classList.remove('not-selected-metric');
+			}
 		});
-
-		
 
 	});
 
@@ -121,6 +144,8 @@
 		map.panTo(city.original.geometry.coordinates);
 		map.zoonTo(10);
 	}
+
+	
 
 
 </script>
@@ -179,7 +204,7 @@
 	</Typeahead>
 </div>
 
-<Select ctuid={ctuid}/>
+<Select ctuid={ctuid} metric={metric}/>
 
 <Info pageWidth={pageWidth}/>
 
