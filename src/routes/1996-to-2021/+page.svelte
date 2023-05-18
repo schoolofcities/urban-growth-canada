@@ -15,6 +15,39 @@
 	let ctuid = "0";
 
 	let pageWidth;
+
+	let metric = 'population';
+
+	function setMetric(value) {
+		
+		if (map) {
+			metric = value;
+			console.log(metric);
+
+			if (metric === 'population') {
+				map.setPaintProperty('pop_growth', 'circle-opacity', 0.8);
+				map.setPaintProperty('pop_decline', 'circle-opacity', 0.8);
+				map.setPaintProperty('pop_growth', 'circle-stroke-opacity', 1);
+				map.setPaintProperty('pop_decline', 'circle-stroke-opacity', 1);
+				map.setPaintProperty('dwe_growth', 'circle-opacity', 0);
+				map.setPaintProperty('dwe_decline', 'circle-opacity', 0);
+				map.setPaintProperty('dwe_growth', 'circle-stroke-opacity', 0);
+				map.setPaintProperty('dwe_decline', 'circle-stroke-opacity', 0);
+			} 
+			else {
+				map.setPaintProperty('pop_growth', 'circle-opacity', 0);
+				map.setPaintProperty('pop_decline', 'circle-opacity', 0);
+				map.setPaintProperty('pop_growth', 'circle-stroke-opacity', 0);
+				map.setPaintProperty('pop_decline', 'circle-stroke-opacity', 0);
+				map.setPaintProperty('dwe_growth', 'circle-opacity', 0.8);
+				map.setPaintProperty('dwe_decline', 'circle-opacity', 0.8);
+				map.setPaintProperty('dwe_growth', 'circle-stroke-opacity', 1);
+				map.setPaintProperty('dwe_decline', 'circle-stroke-opacity', 1);
+			}
+		}
+		
+	}
+	
 	
 	onMount(() => {
 		map = new mapboxgl.Map({
@@ -70,6 +103,14 @@
 
 		});
 
+		map.on('load', () => {
+			const layers = map.getStyle().layers;
+			const layerNames = layers.map(layer => layer.id);
+			console.log(layerNames);
+		});
+
+		
+
 	});
 
 	
@@ -103,8 +144,25 @@
 </div>
 
 <div id="metric">
-	<!-- stuff -->
+	<div id="metric-label">
+	  <p>Selected Metric</p>
+	</div>
+	<div 
+		id="metric-population" 
+		class:selected-metric={metric === 'population'}
+    	class:non-selected-metric={metric !== 'population'}
+		on:click={() => setMetric('population')}>
+	  <p>Population</p>
+	</div>
+	<div 
+		id="metric-dwelling" 
+		class:selected-metric={metric === 'dwelling'}
+   		class:non-selected-metric={metric !== 'dwelling'}
+		on:click={() => setMetric('dwelling')}>
+	  <p>Occupied Dwellings</p>
+	</div>
 </div>
+  
 
 <div id="search">
 	<Typeahead
@@ -151,11 +209,50 @@
 		top: 60px;
 		left: 5px;
 		height: 42px;
-		width: 256px;
+		width: 258px;
 		background-color: white;
-		border: solid 2px lightgrey;
+		border: solid 1px lightgrey;
 		z-index: 999;
+		display: flex;
+  		flex-wrap: wrap;
+		
+		text-align: center;
+	}
+	#metric p {
+		font-family: Roboto, sans-serif;
+		font-size: 13px;
+		color: rgb(70, 70, 70);
+		margin-top: 2px;
+	}
+	#metric-label {
+		width: 100%;
+		height: 21px;
+		border-bottom: solid 1px lightgray;
+	}
+	#metric-population,
+	#metric-dwelling {
+		width: 50%;
+		box-sizing: border-box;
+		height: 21px;
+		cursor: pointer;
+		
+	}
+	#metric-population {
+		order: 1;
+		border-right: solid 1px lightgray;
+	}
+	#metric-dwelling {
+		order: 2;
+	}
+	#metric-population:hover {
+		background-color: #F1C500;
+	}
+	#metric-dwelling:hover {
+		background-color: #F1C500;
+	}
 
+	.selected-metric {
+		background-color: black;
 	}
 
 
@@ -195,7 +292,6 @@
 
 	#map-wrapper {
 		margin-top: 50px;
-		/*  height: calc(100vh - 50px); */
 		width: 100%;
 		top: 0;
         left: 0;
