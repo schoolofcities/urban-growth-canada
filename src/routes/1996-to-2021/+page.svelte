@@ -169,9 +169,9 @@
 </div>
 
 <div id="metric">
-	<div id="metric-label">
+	<!-- <div id="metric-label">
 	  <p>Selected Metric</p>
-	</div>
+	</div> -->
 	<div 
 		id="metric-population" 
 		class:selected-metric={metric === 'population'}
@@ -222,7 +222,6 @@
 		font-family: 'Roboto', sans-serif;
 	}
 
-
 	main {
 		margin: auto;
 		width: 100%;
@@ -231,16 +230,16 @@
 
 	#metric {
 		position: absolute;
-		top: 60px;
-		left: 5px;
-		height: 42px;
-		width: 258px;
+		bottom: 256px;
+		left: 0px;
+		height: 21px;
+		width: 335px;
 		background-color: white;
-		border: solid 1px lightgrey;
+		border: solid 1px #1E3765;
+		border-left: none;
 		z-index: 999;
 		display: flex;
   		flex-wrap: wrap;
-		
 		text-align: center;
 	}
 	#metric p {
@@ -260,11 +259,12 @@
 		box-sizing: border-box;
 		height: 21px;
 		cursor: pointer;
+		border: none;
 		
 	}
 	#metric-population {
 		order: 1;
-		border-right: solid 1px lightgray;
+		border-right: solid 1px #1E3765;
 	}
 	#metric-dwelling {
 		order: 2;
@@ -277,15 +277,17 @@
 	}
 
 	.selected-metric {
-		background-color: black;
+		background-color: #F1C500;
+		border-bottom: solid 1px #1E3765;
 	}
 
 
 	:global([data-svelte-search]) {
-		/* height: 50px; */
+		height: 50px;
 		border: solid 1px lightgrey;
 		border-radius: 0px;
 		background-color: none;
+		font-size: 10px;
 	}
 	:global([data-svelte-search] li) {
 		height: 50px;
@@ -309,9 +311,9 @@
 	#search {
 		position: absolute;
 		width: 260px;
-		top: 92px;
+		top: 40px;
 		left: 5px;
-		z-index: 99;
+		z-index: 1;
 		opacity: 0.93;
 	}
 
@@ -325,7 +327,6 @@
 	}
 
 	#map {
-		/* margin-top: 50px; */
 		height: 100%;
 		width: 100%;
 		top: 0;
@@ -342,6 +343,5 @@
 		height: calc(100vh - 255px - 50px);
 	}
 
-	
 	
 </style>

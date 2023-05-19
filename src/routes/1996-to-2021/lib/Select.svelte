@@ -71,7 +71,7 @@
 
         </div>
         <p>
-            For some Census Tracts, data for 1996 are estimate interpolated due to tract boundaries changing over time and may not by 100% accurate.
+            For some areas, data for 1996 are estimated via areal interpolation due to tract boundaries changing over time, and thus may not by 100% accurate.
         </p>
     </div>
 </div>
@@ -86,7 +86,7 @@
 		background-color: #fff;
 		border: solid 2px rgb(225, 225, 225);
 		border-radius: 4px;
-		top: 157px;
+		top: 97px;
 		left: 6px;
 		z-index: 1;
 		opacity: 0.93;
@@ -101,6 +101,7 @@
 		font-family: Roboto, sans-serif;
         padding-left: 15px;
         padding-right: 10px;
+        opacity: 0.6;
     }
 	#yellow {
 		width: 100%;
@@ -119,6 +120,7 @@
     #data {
         text-align: right;
         margin-right: 15px;
+        min-height: 60px;
     }
     #data p {
 		padding-left: 10px;
@@ -126,6 +128,7 @@
 		font-family: Roboto, sans-serif;
 		font-size: 13px;
 		line-height: 0.3;
+        opacity: 0.99;
 	}
     #bold {
         font-weight: bold;

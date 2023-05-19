@@ -7,6 +7,8 @@
 
     export let pageWidth;
 
+	export let metric;
+
 </script>
 
 
@@ -14,8 +16,8 @@
 <div id="panel" class="{pageWidth < 755 ? 'mobile' : 'web'}">
 
 	<div id="title">
-		<h1>25 Years of Population Growth & Decline in Canadian Cities</h1>
-
+		<!-- <h1>25 Years of Population Growth & Decline in Canadian Cities</h1> -->
+		<h1>25 Years of Change in Occupied Dwellings in Canadian Cities</h1>
 		<p>
 			<p>Visualizing by neighbourhood census tracts how the population has increased <Circle stroke="#007FA3" fill="#6FC7EA"/> or decreased <Circle stroke="#dc4633" fill="#ff5842"/> between <span id="bold">1996</span> and <span id="bold">2021</span>. <br> The area of the circles are proportional to the growth or decline in population in each neighbourhood:
 
@@ -56,7 +58,7 @@
         width: 335px;
         height: 255px;
 		border-right: solid 1px #1E3765;
-		border-top-right-radius: 25px;
+		border-top-right-radius: 0px;
     }
 
 	#title {
@@ -69,7 +71,7 @@
 
 	#title h1 {
 		font-family: Roboto, sans-serif;
-		font-size: 20px;
+		font-size: 18px;
 		color: #1E3765
 	}
 
