@@ -177,14 +177,14 @@
 		class:selected-metric={metric === 'population'}
     	class:non-selected-metric={metric !== 'population'}
 		on:click={() => setMetric('population')}>
-	  <p>Population</p>
+	  <p>Population →</p>
 	</div>
 	<div 
 		id="metric-dwelling" 
 		class:selected-metric={metric === 'dwelling'}
    		class:non-selected-metric={metric !== 'dwelling'}
 		on:click={() => setMetric('dwelling')}>
-	  <p>Occupied Dwellings</p>
+	  <p>Occupied Dwellings →</p>
 	</div>
 </div>
   
@@ -206,7 +206,7 @@
 
 <Select ctuid={ctuid} metric={metric}/>
 
-<Info pageWidth={pageWidth}/>
+<Info pageWidth={pageWidth} metric={metric}/>
 
 </main>
 
@@ -279,6 +279,9 @@
 	.selected-metric {
 		background-color: #F1C500;
 		border-bottom: solid 1px #1E3765;
+	}
+	.non-selected-metric {
+		background-color: rgb(225, 225, 225);
 	}
 
 

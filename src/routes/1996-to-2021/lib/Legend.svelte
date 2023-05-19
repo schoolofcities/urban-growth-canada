@@ -1,3 +1,23 @@
+<script>
+
+   export let metric;
+
+   var bigNumber;
+   var smallNumber;
+   var formula;
+
+   $: if (metric === "population") {
+      bigNumber = '10,000';
+      smallNumber = '1,000';
+      formula = 'POP21 - POP96';
+   } else {
+      bigNumber = '4,000';
+      smallNumber = '400';
+      formula = 'DWE21 - DWE96';
+   }
+
+</script>
+
 
 <div id="legend">
 <svg
@@ -44,7 +64,7 @@
        x="120.15823"
        y="16"
        id="text"
-       style="font-size:13.3333px;fill:#333333">-10,000</tspan></text>
+       style="font-size:13.3333px;fill:#333333">- {bigNumber}</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:13px;line-height:1.25;font-family:Roboto, sans-serif;fill:#333333"
@@ -54,7 +74,7 @@
        x="119.99829"
        y="33"
        id="text"
-       style="font-size:13.3333px;fill:#333333">-1,000</tspan></text>
+       style="font-size:13.3333px;fill:#333333">- {smallNumber}</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:13px;line-height:1.25;font-family:Roboto,sans-serif;fill:#333333"
@@ -64,7 +84,7 @@
        x="10.1969825"
        y="16"
        id="text"
-       style="font-size:13.3333px;fill:#333333">POP21 - POP96 = </tspan></text>
+       style="font-size:13.3333px;fill:#333333">{formula} = </tspan></text>
   <path
      style="fill:none;stroke:#b3b3b3;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      d="m 267.19599,45.5 h 40"
@@ -99,7 +119,7 @@
      id="text"><tspan
        x="217.40622"
        y="16"
-       >+10,000</tspan></text>
+       >+ {bigNumber}</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:13px;line-height:1.25;font-family:Roboto, sans-serif;fill:#333333"
@@ -109,11 +129,9 @@
        x="217.44501"
        y="33"
        id="text"
-       >+1,000</tspan></text>
+       >+ {smallNumber}</tspan></text>
 </svg>
 </div>
-
-<div id="meow"></div>
 
 <style>
     #legend {

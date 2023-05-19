@@ -9,6 +9,21 @@
 
 	export let metric;
 
+	var metricTitleText;
+	var metricPara1Text;
+	var metricPara2Text;
+
+	$: if (metric === 'population') {
+		metricTitleText = "25 Years of Population Growth & Decline in Canadian Cities"
+		metricPara1Text = 'population'
+		metricPara2Text = 'population'
+	} else {
+		metricTitleText = "25 Years of Change in Occupied Dwellings in Canadian Cities"
+		metricPara1Text = 'number of occupied dwellings'
+		metricPara2Text = 'occupied dwellings'
+	};
+	
+
 </script>
 
 
@@ -16,15 +31,14 @@
 <div id="panel" class="{pageWidth < 755 ? 'mobile' : 'web'}">
 
 	<div id="title">
-		<!-- <h1>25 Years of Population Growth & Decline in Canadian Cities</h1> -->
-		<h1>25 Years of Change in Occupied Dwellings in Canadian Cities</h1>
+		<h1>{metricTitleText}</h1>
 		<p>
-			<p>Visualizing by neighbourhood census tracts how the population has increased <Circle stroke="#007FA3" fill="#6FC7EA"/> or decreased <Circle stroke="#dc4633" fill="#ff5842"/> between <span id="bold">1996</span> and <span id="bold">2021</span>. <br> The area of the circles are proportional to the growth or decline in population in each neighbourhood:
-
+			Visualizing by neighbourhood census tracts how the {metricPara1Text} has increased <Circle stroke="#007FA3" fill="#6FC7EA"/> or decreased <Circle stroke="#dc4633" fill="#ff5842"/> between <span id="bold">1996</span> and <span id="bold">2021</span>.
 		</p>
-
-        <Legend/>
-        
+		<p>	
+			The area of the circles are proportional to the growth or decline in {metricPara2Text} in each neighbourhood:
+		</p>
+        <Legend {metric}/>
 	</div>
 
 	<a href="https://github.com/schoolofcities/population-change-canadian-cities-1996-2021/">
@@ -86,7 +100,7 @@
 	#bold {
 		color: black;
 		font-weight: bold;
-		font-size: 14px;
+		font-size: 12px;
 	}
 
 	#more-less {
