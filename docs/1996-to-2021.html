@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="./favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Urban Growth Canada | School of Cities</title>
+		<meta http-equiv="content-security-policy" content="">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.3ebde0db.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.b21d90ec.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.3bfbfd95.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.57a59873.js">
+
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">
+			<script>
+				{
+					__sveltekit_xbmdtl = {
+						assets: "/urban-growth-canada",
+						base: new URL(".", location).pathname.slice(0, -1),
+						env: {}
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("./_app/immutable/entry/start.3ebde0db.js"),
+						import("./_app/immutable/entry/app.57a59873.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element);
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>
