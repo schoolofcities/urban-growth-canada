@@ -120,6 +120,7 @@
 		});
 
 		map.on('load', function() {
+			
 			setMetric(metric);
 			if (metric === "population") {
 				document.getElementById('metric-population').classList.add('selected-metric');
@@ -181,9 +182,9 @@
 	</div>
 	<div 
 		id="metric-dwelling" 
-		class:selected-metric={metric === 'dwelling'}
-   		class:non-selected-metric={metric !== 'dwelling'}
-		on:click={() => setMetric('dwelling')}>
+		class:selected-metric={metric === 'dwellings'}
+   		class:non-selected-metric={metric !== 'dwellings'}
+		on:click={() => setMetric('dwellings')}>
 	  <p>Occupied Dwellings →</p>
 	</div>
 </div>
@@ -222,6 +223,12 @@
 		font-family: 'Roboto', sans-serif;
 	}
 
+	:global(body) {
+		padding: 0px;
+		margin: 0px;
+		background-color: #fff;
+	}
+
 	main {
 		margin: auto;
 		width: 100%;
@@ -247,11 +254,6 @@
 		font-size: 13px;
 		color: rgb(70, 70, 70);
 		margin-top: 2px;
-	}
-	#metric-label {
-		width: 100%;
-		height: 21px;
-		border-bottom: solid 1px lightgray;
 	}
 	#metric-population,
 	#metric-dwelling {
@@ -285,12 +287,12 @@
 	}
 
 
+
 	:global([data-svelte-search]) {
-		height: 50px;
+		/* height: 50px; */
 		border: solid 1px lightgrey;
-		border-radius: 0px;
+		border-radius: 4px;
 		background-color: none;
-		font-size: 10px;
 	}
 	:global([data-svelte-search] li) {
 		height: 50px;
@@ -314,11 +316,14 @@
 	#search {
 		position: absolute;
 		width: 260px;
-		top: 40px;
+		top: 62px;
 		left: 5px;
-		z-index: 1;
+		z-index: 99;
 		opacity: 0.93;
 	}
+
+	
+	
 
 	#map-wrapper {
 		margin-top: 50px;
