@@ -5,10 +5,10 @@
     "x": -52.85872194,
     "y": 47.49945,
     "active": 0.143160895,
-    "transit": "",
+    "transit": 0,
     "auto": 0.736657901,
     "exurban": 0.120181203,
-    "unclassified": "",
+    "unclassified": 0,
     "pop2021": 212579
   },
   {
@@ -29,10 +29,10 @@
     "x": -64.85810157,
     "y": 46.01479652,
     "active": 0.196662376,
-    "transit": "",
+    "transit": 0,
     "auto": 0.572779092,
     "exurban": 0.230558532,
-    "unclassified": "",
+    "unclassified": 0,
     "pop2021": 157717
   },
   {
@@ -53,7 +53,7 @@
     "x": -66.77943409,
     "y": 46.01475142,
     "active": 0.158420035,
-    "transit": "",
+    "transit": 0,
     "auto": 0.470794586,
     "exurban": 0.370785379,
     "unclassified": 0,
@@ -65,10 +65,10 @@
     "x": -71.00826823,
     "y": 48.41945274,
     "active": 0.059201446,
-    "transit": "",
+    "transit": 0,
     "auto": 0.548899218,
     "exurban": 0.391899336,
-    "unclassified": "",
+    "unclassified": 0,
     "pop2021": 161567
   },
   {
@@ -80,7 +80,7 @@
     "transit": 0.096685257,
     "auto": 0.560102274,
     "exurban": 0.156679705,
-    "unclassified": "",
+    "unclassified": 0,
     "pop2021": 839311
   },
   {
@@ -92,7 +92,7 @@
     "transit": 0.124161162,
     "auto": 0.452053228,
     "exurban": 0.197627068,
-    "unclassified": "",
+    "unclassified": 0,
     "pop2021": 227398
   },
   {
@@ -101,10 +101,10 @@
     "x": -72.50226037,
     "y": 46.36024616,
     "active": 0.131680796,
-    "transit": "",
+    "transit": 0,
     "auto": 0.683396392,
     "exurban": 0.184922812,
-    "unclassified": "",
+    "unclassified": 0,
     "pop2021": 161489
   },
   {
@@ -113,10 +113,10 @@
     "x": -72.46177274,
     "y": 45.86693776,
     "active": 0.154709182,
-    "transit": "",
+    "transit": 0,
     "auto": 0.524249582,
     "exurban": 0.321041236,
-    "unclassified": "",
+    "unclassified": 0,
     "pop2021": 101610
   },
   {
@@ -140,7 +140,7 @@
     "transit": 0.087899875,
     "auto": 0.619829108,
     "exurban": 0.149297154,
-    "unclassified": "",
+    "unclassified": 0,
     "pop2021": 1488307
   },
   {
@@ -188,7 +188,7 @@
     "transit": 0.090866844,
     "auto": 0.832455678,
     "exurban": 0.051192961,
-    "unclassified": "",
+    "unclassified": 0,
     "pop2021": 415311
   },
   {
@@ -221,10 +221,10 @@
     "x": -79.23270316,
     "y": 43.03568956,
     "active": 0.089157388,
-    "transit": "",
+    "transit": 0,
     "auto": 0.794796635,
     "exurban": 0.116045977,
-    "unclassified": "",
+    "unclassified": 0,
     "pop2021": 433604
   },
   {
@@ -245,7 +245,7 @@
     "x": -80.30785569,
     "y": 43.1255398,
     "active": 0.033774504,
-    "transit": "",
+    "transit": 0,
     "auto": 0.770202966,
     "exurban": 0.19602253,
     "unclassified": 0,
@@ -257,10 +257,10 @@
     "x": -80.21970225,
     "y": 43.54398287,
     "active": 0.26359398,
-    "transit": "",
+    "transit": 0,
     "auto": 0.604464092,
     "exurban": 0.131941928,
-    "unclassified": "",
+    "unclassified": 0,
     "pop2021": 165588
   },
   {
@@ -272,7 +272,7 @@
     "transit": 0.163362776,
     "auto": 0.549994389,
     "exurban": 0.14950391,
-    "unclassified": "",
+    "unclassified": 0,
     "pop2021": 543551
   },
   {
@@ -296,7 +296,7 @@
     "transit": 0.0501578,
     "auto": 0.542114108,
     "exurban": 0.208275268,
-    "unclassified": "",
+    "unclassified": 0,
     "pop2021": 97592
   },
   {
@@ -308,7 +308,7 @@
     "transit": 0.049319728,
     "auto": 0.776524975,
     "exurban": 0.137365167,
-    "unclassified": "",
+    "unclassified": 0,
     "pop2021": 212856
   },
   {
@@ -332,7 +332,7 @@
     "transit": 0.011471872,
     "auto": 0.533320352,
     "exurban": 0.290950689,
-    "unclassified": "",
+    "unclassified": 0,
     "pop2021": 123258
   },
   {
@@ -356,7 +356,7 @@
     "transit": 0.172857389,
     "auto": 0.645377322,
     "exurban": 0.101630306,
-    "unclassified": "",
+    "unclassified": 0,
     "pop2021": 249217
   },
   {
@@ -368,7 +368,7 @@
     "transit": 0.058306035,
     "auto": 0.653313595,
     "exurban": 0.169758725,
-    "unclassified": "",
+    "unclassified": 0,
     "pop2021": 317480
   },
   {
@@ -377,10 +377,10 @@
     "x": -112.7677316,
     "y": 49.84374584,
     "active": 0.090345345,
-    "transit": "",
+    "transit": 0,
     "auto": 0.825720445,
     "exurban": 0.083934209,
-    "unclassified": "",
+    "unclassified": 0,
     "pop2021": 123847
   },
   {
@@ -403,8 +403,8 @@
     "active": 0.096713736,
     "transit": 0.034637658,
     "auto": 0.868648606,
-    "exurban": "",
-    "unclassified": "",
+    "exurban": 0,
+    "unclassified": 0,
     "pop2021": 100844
   },
   {
@@ -428,7 +428,7 @@
     "transit": 0.081341544,
     "auto": 0.760143499,
     "exurban": 0.05878143,
-    "unclassified": "",
+    "unclassified": 0,
     "pop2021": 222162
   },
   {
@@ -449,7 +449,7 @@
     "x": -121.7230601,
     "y": 49.13776896,
     "active": 0.171684232,
-    "transit": "",
+    "transit": 0,
     "auto": 0.599057723,
     "exurban": 0.228475744,
     "unclassified": 0.000782301,
@@ -460,11 +460,11 @@
     "cmaname": "Abbotsford-Mission",
     "x": -122.3083451,
     "y": 49.13499577,
-    "active": "",
-    "transit": "",
+    "active": 0,
+    "transit": 0,
     "auto": 0.855537844,
     "exurban": 0.144462156,
-    "unclassified": "",
+    "unclassified": 0,
     "pop2021": 195726
   },
   {
@@ -497,7 +497,7 @@
     "x": -124.2348054,
     "y": 49.12789644,
     "active": 0.186672325,
-    "transit": "",
+    "transit": 0,
     "auto": 0.678249422,
     "exurban": 0.12681558,
     "unclassified": 0.008262673,
@@ -509,7 +509,7 @@
     "x": -121.9302733,
     "y": 53.92336678,
     "active": 0.219432339,
-    "transit": "",
+    "transit": 0,
     "auto": 0.496569449,
     "exurban": 0.28305956,
     "unclassified": 0.000938652,
