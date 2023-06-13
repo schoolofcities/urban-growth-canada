@@ -134,18 +134,6 @@
   {
     "cmauid": 505,
     "cmaname": "Ottawa-Gatineau",
-    "x": -75.73745472,
-    "y": 45.68287856,
-    "active%": 0.142973862,
-    "transit%": 0.087899875,
-    "auto%": 0.619829108,
-    "exurban%": 0.149297154,
-    "unclassified%": "",
-    "pop2021": 1488307
-  },
-  {
-    "cmauid": 505,
-    "cmaname": "Ottawa-Gatineau",
     "x": -75.82783297,
     "y": 45.27261538,
     "active%": 0.142973862,
