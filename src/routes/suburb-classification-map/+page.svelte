@@ -5,6 +5,10 @@
 
 	mapboxgl.accessToken = 'pk.eyJ1Ijoic2Nob29sb2ZjaXRpZXMiLCJhIjoiY2w2Z2xhOXprMTYzczNlcHNjMnNvdGlmNCJ9.lOgVHrajc1L-LlU0as2i2A';
 
+	// global cma variable
+	let cma = 'Toronto';
+
+
 	onMount(() => {
 		map = new mapboxgl.Map({
 			container: 'map', 
@@ -12,7 +16,7 @@
 			center: [-79.45, 43.65], 
 			zoom: 10,
 			maxZoom: 12,
-			minZoom: 5,
+			minZoom: 1,
 			projection: 'globe',
 			scrollZoom: true,
 			attributionControl: false
@@ -29,6 +33,7 @@
 
 </script>
 
+
 <svelte:head>
 	<link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet' />
 </svelte:head>
@@ -36,7 +41,9 @@
 
 
 <main>
+
 	<div id="map"></div>
+
 </main>
 
 
