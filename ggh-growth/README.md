@@ -3,22 +3,23 @@
 
 Data preparation for a SofC IMFG report
 
+
 ## Part 1) Looking back, 2006 to 2021
 
-Trying where growth has occurred in the Greater Golden Horseshoe (GGH) from 2006 to 2021 in terms of sprawl versus intensification, specifically in relation to the built-up boundary in the 2006 Growth Plan. We will try to find to what extent growth has occurred...
+Trying to understand where growth has occurred in the Greater Golden Horseshoe (GGH) from 2006 to 2021 in terms of sprawl versus intensification, specifically in relation to the built-up boundary in the 2006 Growth Plan. We will try to find to what extent growth has occurred...
        
 A. Outside the 2006 Growth Boundary
 B. Within the 2006 Growth Boundary
 C. If within, to what extent is growth ‘near’ transit and/or within Urban Growth Centres (UGC)
 
-Report this for the overall GGH, and for each sub-region
+Report this for the overall GGH, and for each sub-region (see `regions-summary.csv` for a list of each)
 
 The following describes the technical steps:
 
 
 ### A) Preparing Census Data
 
-1. Download census Dissemination Area (DA) boundaries for 2006 and 2021 for the GGH
+1. Download census Dissemination Area (DA) boundaries for 2006 and 2021 for Ontario
 2. Create a linking table of each DA to it’s corresponding GGH sub-region (file 'ggh-growth-plan-regions.geojson'). Each DA should only be linked to one sub-region. e.g.
 
 | DAUID_21 | Region  |
@@ -29,11 +30,12 @@ The following describes the technical steps:
       
 - Do this by matching IDs (use the census geography hierarchy or attribute file if needed) rather than any sort of spatial query. The higher level census IDs for each sub-region can be found in 'regions-summary.csv'
 
-- Create a table for 2021 DAs and 2006 DAs
+- Create separate tables for 2021 DAs and 2006 DAs
     
-3. Filter the downloaded DA boundaries for just those in this table (i.e. just those within the GGH)
-4. Download and left-join data for population, area (km2), total households, total dwellings (all dwellings, not just occupied), and dwellings by structural type (there are 7-8ish categories) for each DA
-5. Create summary table of growth for each sub-region - i.e. change in pop, households, dwellings, dwellings by structural type - by aggregating and summing DA-level data by sub-region for the two years, then join and compute the difference between the two years
+3. Filter the downloaded DA boundaries for just those within the GGH.
+4. Download and left-join data for population, area (km2), total households, total dwellings (all dwellings, not just occupied), and dwellings by structural type (there are 7-8ish categories) for each DA. Do this for 2006 and 2021.
+5. Create summary table of growth for each sub-region - i.e. change in pop, households, dwellings, dwellings by structural type - by aggregating and summing DA-level data by sub-region for the two years, then join by the sub-region and compute the difference between the two years
+
 
 ### B) Classifying DAs
 
@@ -43,20 +45,23 @@ We now need to classify DAs whether they are within or outside the 2006 growth b
 
 2. Create a binary classification denoting whether DAs INTERSECT the 2006 Urban Growth Centres (UGC) and 1km transit station buffers.
 
-The final table should look like the following
+- Do the above steps in QGIS or `geopandas`
 
-| DAUID    | in_2006_built_boundary | in_urban_growth_centre | in_1km_transit_buffer |
+- The final table should look like the following. Have a table for 2021 and another for 2006
+
+| DAUID_21    | in_2006_built_boundary | in_urban_growth_centre | in_1km_transit_buffer |
 | -------- | ---------------------- | ---------------------- | --------------------- |
 | 35200001 | yes                    | no                     | yes                   |
 | 35200002 | yes                    | yes                    | no                    |
 | 35200003 | no                     | no                     | no                    |
 | ... | ...                     | ...                     | ...                    |
 
+
 ### C) Summarizing Results
 
-1. Create a summary table showing the growth in population, households, and dwellings within each scenario (within and outside the built boundary) by aggregating DA-level data by region. Here's an example for population (then do similarly for households, dwellings, etc.)
+1. Create summary tables showing the growth in population, households, and dwellings within each scenario (e.g. within and outside the built boundary) by aggregating DA-level data by region. Here's an example for population (then do similarly for households, dwellings, etc.)
 
-| Region  | population_growth | in_2006_built_boundary | in_urban_growth_centre | in_1km_transit_buffer |
+| Region  | population_growth_06_to_21 | in_2006_built_boundary | in_urban_growth_centre | in_1km_transit_buffer |
 | ------- | ----------------- | ---------------------- | ---------------------- | --------------------- |
 | Toronto | 300000            | 90%                    | 40%                    | 50%                   |
 | Peel    | 100000            | 40%                    | 20%                    | 25%                   |
