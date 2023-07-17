@@ -34,7 +34,8 @@ The following describes the technical steps:
     
 3. Filter the downloaded DA boundaries for just those within the GGH.
 4. Download and left-join data for
-       |Census Variables                    |              2006                     |              2021              |              Notes|
+       |Census Variables                    |              2006                     |              2021              |              Notes        |
+       | ----| ---| ---|---|
        |population,                           ||||       
        |area (km2),                            ||||
        |total households,                     |||
