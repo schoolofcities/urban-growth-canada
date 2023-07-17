@@ -33,8 +33,16 @@ The following describes the technical steps:
 - Create separate tables for 2021 DAs and 2006 DAs
     
 3. Filter the downloaded DA boundaries for just those within the GGH.
-4. Download and left-join data for population, area (km2), total households, total dwellings (all dwellings, not just occupied), and dwellings by structural type (there are 7-8ish categories) for each DA. Do this for 2006 and 2021.
-5. Create summary table of growth for each sub-region - i.e. change in pop, households, dwellings, dwellings by structural type - by aggregating and summing DA-level data by sub-region for the two years, then join by the sub-region and compute the difference between the two years
+4. Download and left-join data for
+       Census Variables                    |              2006                     |              2021              |              Notes
+       population,                           |
+       area (km2),
+       total households,
+       total dwellings                     |||(all dwellings, not just occupied), and
+       dwellings by structural type        ||| (there are 7-8ish categories)
+
+   for each DA. Do this for 2006 and 2021.
+6. Create summary table of growth for each sub-region - i.e. change in pop, households, dwellings, dwellings by structural type - by aggregating and summing DA-level data by sub-region for the two years, then join by the sub-region and compute the difference between the two years
 
 
 ### B) Classifying DAs
