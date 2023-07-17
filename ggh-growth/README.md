@@ -39,13 +39,13 @@ The following describes the technical steps:
    for each DA. Do this for 2006 and 2021.
 5. Create summary table of growth for each sub-region - i.e. change in pop, households, dwellings, dwellings by structural type - by aggregating and summing DA-level data by sub-region for the two years, then join by the sub-region and compute the difference between the two years
 
-       |Census Variables                    |              2006                     |              2021              |              Notes        |
-       | ----| ---| ---|---|
-       |population,                           ||||       
-       |area (km2),                            ||||
-       |total households,                     |||
-       |total dwellings                     |||(all dwellings, not just occupied), and|
-       |dwellings by structural type        ||| (there are 7-8ish categories)|
+|Census Variables                    |              2006                     |              2021              |              Notes        |
+| ----| ---| ---|---|
+|population,                           ||||       
+|area (km2),                            ||||
+|total households,                     |||
+|total dwellings                     |||(all dwellings, not just occupied), and|
+|dwellings by structural type        ||| (there are 7-8ish categories)|
 ### B) Classifying DAs
 
 We now need to classify DAs whether they are within or outside the 2006 growth boundary, as well as Urban Growth Centres and near transit
