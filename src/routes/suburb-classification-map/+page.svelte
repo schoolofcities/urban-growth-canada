@@ -8,16 +8,33 @@
 
 	mapboxgl.accessToken = 'pk.eyJ1Ijoic2Nob29sb2ZjaXRpZXMiLCJhIjoiY2w2Z2xhOXprMTYzczNlcHNjMnNvdGlmNCJ9.lOgVHrajc1L-LlU0as2i2A';
 
-	// global cma variable
+    // array of all cma names
     let cmaAll = cmaSummary
         .sort((a, b) => b.pop2021 - a.pop2021)
         .map(item => item.cmaname);
         
+    // initial cma selected
 	let cmaSelected = 'Montreal';
     $: console.log(cmaSelected);
 
+    // create map variable to fill in with onMount
+    let map;
+
+    // function for what to do when new cma is selected
     function handleSelect(e) {
+
+        // reset cma selected variable
         cmaSelected = e.detail.value;
+
+        // filter cma data to just the cma we selected
+        let filteredData = cmaSummary.filter(item => item.cmaname === cmaSelected)[0];
+
+        // pan and zoom to the new cma
+        map.setZoom(10);
+        map.panTo([filteredData.x, filteredData.y]);
+
+        // filter the base map data
+
     }
 
 
@@ -27,7 +44,6 @@
 
 
 
-    let map;
 
 
     // const name = raw.map(cityname => cityname.cmaname);
@@ -39,7 +55,7 @@
             style: 'mapbox://styles/schoolofcities/cli0otj3n04m601pa9s0s0mc4',
             center: [-73.628, 45.575], 
             zoom: 10,
-            maxZoom: 11,
+            maxZoom: 14,
             minZoom: 1,
             scrollZoom: true,
             attributionControl: false
