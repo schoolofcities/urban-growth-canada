@@ -29,38 +29,51 @@
         // filter cma data to just the cma we selected
         let filteredData = cmaSummary.filter(item => item.cmaname === cmaSelected)[0];
 
-        // pan and zoom to the new cma
-        map.setZoom(10);
-        map.panTo([filteredData.x, filteredData.y]);
+        let cmaX = filteredData.x;
+        let cmaY = filteredData.y;
+        let cmauid = filteredData.cmauid.toString();
+
+        // pan and zoom to the new cma - reset pitch and bearing if they changed
+        map.setZoom(9);
+        map.setBearing(0);
+        map.setPitch(0);
+        map.panTo([cmaX, cmaY]);
 
         // filter the base map data
-
+        map.setFilter(
+            "suburbs-project-ct", 
+            [
+                "match",
+                ["get", "cmaname"],
+                [cmaSelected],
+                true,
+                false
+            ]
+        );
+        map.setFilter(
+            "suburbs-project-cma", 
+            [
+                "match",
+                ["get", "CMAUID"],
+                [cmauid],
+                true,
+                false
+            ]
+        );
     }
-
-
-
-
-
-
-
-
-
-
-    // const name = raw.map(cityname => cityname.cmaname);
-    // const cords = raw.map(citycord => ({ x: citycord.x , y: citycord.y}));
 
     onMount(() => {
         map = new mapboxgl.Map({
             container: 'map', 
             style: 'mapbox://styles/schoolofcities/cli0otj3n04m601pa9s0s0mc4',
             center: [-73.628, 45.575], 
-            zoom: 10,
+            zoom: 9,
             maxZoom: 14,
             minZoom: 1,
             scrollZoom: true,
             attributionControl: false
         });
-	// Knick knacks	
+
         map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
         const scale = new mapboxgl.ScaleControl({
@@ -86,39 +99,7 @@
                 .addTo(map);
         });
 
-
-/*  
-map.on('click', 'suburbs-project-ct', (e) => {		
-
-    var features = map.queryRenderedFeatures(e.point, { layers: ['suburbs-project-ct'] });
-
-    if (ctuid != features[0].properties.ctuid) {
-        var style = [
-            "match",
-            ["get", "CTUID"],
-            [features[0].properties.ctuid],
-            "#f1c500",
-            "#fff"
-        ]
-        map.setPaintProperty('suburbs-project-ct', 'fill-color', style)
-        ctuid = features[0].properties.ctuid
-        } 
-    else {
-    map.setPaintProperty('suburbs-project-ct', 'fill-color', '#fff')
-    ctuid = '0'
-    }
-
-});
-
-function placeClick(city) {
-		cmaname = "0";
-		map.setPaintProperty('ct_fill', 'fill-color', '#fff');
-		map.panTo(city.original.geometry.coordinates);
-		map.zoonTo(10);
-	}
-*/
-
-});
+    });
 
 </script>
 
