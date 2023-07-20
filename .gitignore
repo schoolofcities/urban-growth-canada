@@ -9,3 +9,4 @@ node_modules
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 ggh-growth/Census-File-Handling/Data
+ggh-growth/Census-File-Handling/Export/Maps
