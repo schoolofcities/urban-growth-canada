@@ -1,4 +1,4 @@
-,DAUID,CSDUID,Macro,Municipality,a-Population,b-Total number of occupied private dwellings,c-Total dwellings structures,d-Single-detached house,e-Semi-detached house,f-Row house,"g-Apartment, duplex","h-Apartment, building that has five or more storeys","i-Apartment, building that has fewer than five storeys",j-Other single-attached house,k-Movable dwelling,l-Total households
+,DAUID,CSDUID,Macro,Municipality,2006-a-Population,2006-b-Total number of occupied private dwellings,2006-c-Total dwellings structures,2006-d-Single-detached house,2006-e-Semi-detached house,2006-f-Row house,"2006-g-Apartment, duplex","2006-h-Apartment, building that has five or more storeys","2006-i-Apartment, building that has fewer than five storeys",2006-j-Other single-attached house,2006-k-Movable dwelling,2006-l-Total households
 0,35140110,3514045,Outer Ring,County of Northumberland,591.0,235.0,230.0,230.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,230.0
 1,35140111,3514045,Outer Ring,County of Northumberland,589.0,250.0,250.0,225.0,15.0,5.0,0.0,0.0,5.0,0.0,5.0,250.0
 2,35140112,3514045,Outer Ring,County of Northumberland,514.0,225.0,225.0,195.0,0.0,20.0,0.0,0.0,0.0,0.0,0.0,225.0
