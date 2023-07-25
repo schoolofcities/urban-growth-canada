@@ -1,22 +1,22 @@
-Macro,Municipality,CDUID,CDUID2
-GTHA,Region of Durham,3518,3518
-GTHA,Region of York,3519,3519
-GTHA,City of Toronto,3520,3520
-GTHA,Region of Peel,3521,3521
-GTHA,Region of Halton,3524,3524
-GTHA,City of Hamilton,3525,3525
-Outer Ring,County of Northumberland,3514,3514
-Outer Ring,County of Peterborough,3515 minus 3515014,3515
-Outer Ring,City of Peterborough,3515014,3515014
-Outer Ring,City of Kawartha Lakes,3516,3516
-Outer Ring,County of Simcoe,3543 minus 3543042 and 3543052,3543
-Outer Ring,City of Barrie,3543042,3543042
-Outer Ring,City of Orillia,3543052,3543052
-Outer Ring,County of Dufferin,3522,3522
-Outer Ring,County of Wellington,3523 minus 3523008,3523
-Outer Ring,City of Guelph,3523008,3523008
-Outer Ring,Region of Waterloo,3530,3530
-Outer Ring,County of Brant,3529005,3529005
-Outer Ring,City of Brantford,3529006,3529006
-Outer Ring,County of Haldimand,3528018,3528018
-Outer Ring,Region of Niagara,3526,3526
+"Macro","Municipality","Census ID","CDUID2"
+"GTHA","Region of Durham",3518,3518
+"GTHA","Region of York",3519,3519
+"GTHA","City of Toronto",3520,3520
+"GTHA","Region of Peel",3521,3521
+"GTHA","Region of Halton",3524,3524
+"GTHA","City of Hamilton",3525,3525
+"Outer Ring","County of Northumberland",3514,3514
+"Outer Ring","County of Peterborough","3515 minus 3515014",3515
+"Outer Ring","City of Peterborough",3515014,3515014
+"Outer Ring","City of Kawartha Lakes",3516,3516
+"Outer Ring","County of Simcoe","3543 minus 3543042 and 3543052",3543
+"Outer Ring","City of Barrie",3543042,3543042
+"Outer Ring","City of Orillia",3543052,3543052
+"Outer Ring","County of Dufferin",3522,3522
+"Outer Ring","County of Wellington","3523 minus 3523008",3523
+"Outer Ring","City of Guelph",3523008,3523008
+"Outer Ring","Region of Waterloo",3530,3530
+"Outer Ring","County of Brant",3529005,3529005
+"Outer Ring","City of Brantford",3529006,3529006
+"Outer Ring","County of Haldimand",3528018,3528018
+"Outer Ring","Region of Niagara",3526,3526
