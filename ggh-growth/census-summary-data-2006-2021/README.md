@@ -23,5 +23,10 @@ ggh-growth
 
     > census-summary-data-2006-2021
         Codes and exported results are saved here
+        > part-a-results
+
         Individual tables of each census variables and their changes within Built Boundary, UGC, and Transit Buffer is saved in the > summarizing-results folder
 
+Census 2006:
+    Total Private Dwelling is downloaded from Scholars Geoportal while the others are downloaded from CHASS
+    
