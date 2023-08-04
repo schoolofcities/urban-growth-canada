@@ -86,7 +86,7 @@ All work within `ghg-analysis` folder. All data are linked to 2021 DAs. Do all w
 
 The file `input-vkt-by-da-estimate.csv` are estimates of average Vehicle Kilometres Travelled (VKT) per household for each DA in the study area. This is a daily total for a weekday in 2016 (yes this isn't great, but the best we have)
 
-The goal for this part is to estimate the average level of household GHG emissions for transport for each DA based on this data.
+The goal for this part is to estimate the average level of yearly GHG emissions per household for transport for each DA based on this data.
 
 This will be a rough estimate, but should be possible based on the following.
 
