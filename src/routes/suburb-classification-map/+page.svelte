@@ -20,19 +20,24 @@
     
         
     // initial cma selected
-	let cmaSelected = 'Montreal';
-    let selectedPop = (4291732).toLocaleString();
-    let selectedActive = (0.172604906*100).toFixed(1);
-    let selectedTransit = (0.131493532*100).toFixed(1);
-    let selectedAuto = (0.663712459*100).toFixed(1);
-    let selectedExurban = (0.032049299*100).toFixed(1);
+	let cmaSelected = '';
+    let selectedPop = '-';
+    let selectedActive = '-';
+    let selectedTransit = '-';
+    let selectedAuto = '-';
+    let selectedExurban = '-';
 
     $: console.log(cmaPopulation);
 
     // create map variable to fill in with onMount
     let map;
-    let selectedCtuid;
-    let selectedClass;
+    let selectedCtuid = '';
+    let selectedClass = '';
+    let selectedCtPop = ''
+    let selectedPercActive =''
+    let selectedPercTransit =''
+    let selectedPercAuto = ''
+
 
     // function for what to do when new cma is selected
     function handleSelect(e) {
@@ -81,7 +86,7 @@
                 false
             ]
         );
-        }
+    }
 
     onMount(() => {
         map = new mapboxgl.Map({
@@ -116,17 +121,50 @@
         map.on('click', 'suburbs-project-ct', (e) => {
             new mapboxgl.Popup()
                 .setLngLat(e.lngLat)
-                .setHTML("CMA: " + e.features[0].properties.cmaname) //indexes the GeoJSON code for the CTUID from properties
+                .setHTML("CTUID: " + e.features[0].properties.ctuid + "Class:"+ e.features[0].properties.class) //indexes the GeoJSON code for the CTUID from properties
                 .addTo(map);
         });
 
-        map.on('click', 'suburbs-project-ct', (e) => {		
+       /* map.on('click', 'suburbs-project-ct', (e) => {		
 			map.setPaintProperty('suburbs-project-ct' , 'fill-color' , 'pink')
-        });
+        });*/
 
+        map.on('click' , 'suburbs-project-ct' , (e) => {
+            selectedCtuid = e.features[0].properties.ctuid;
+            selectedClass = e.features[0].properties.class;
+            selectedCtPop = (e.features[0].properties.pop2021);
+            selectedPercActive = ((e.features[0].properties.active)*100).toFixed(1);
+            selectedPercTransit = ((e.features[0].properties.transit)*100).toFixed(1);
+            selectedPercAuto = ((e.features[0].properties.auto)*100).toFixed(1);
+
+        })
+
+        map.on('click' , 'suburbs-project-ct' , () => {
+            map.setPaintProperty('suburbs-project-cma' , 'fill-color' , 'red');
+        }
+        );
     });
 
+    let isChecked = false;
+ 
+  function toggleCheckbox() {
+ 	isChecked = !isChecked;
+ 	if (isChecked) {
+    map.setPaintProperty('suburbs-project-ct', 'fill-opacity', 0.50);
+    map.setPaintProperty('mapbox-satellite', 'raster-opacity', 1.00);
+ 	} 
+    else {
+    map.setPaintProperty('suburbs-project-ct', 'fill-opacity', 0.68);
+    map.setPaintProperty('mapbox-satellite', 'raster-opacity', 0.00); 	
+    }
 
+  };
+
+function reset() {
+    console.log('it worked');
+}
+ 
+  
 </script>
 
 
@@ -136,6 +174,12 @@
 
 
 <main>
+
+<div id= "test">    
+    <label>
+        <input type="checkbox" on:change={toggleCheckbox}>
+    </label>
+</div>
 
     <div id="select">
         
@@ -168,9 +212,15 @@
     <div id="box">
          CTUID: {selectedCtuid}
          <br>Classification: {selectedClass}
+         <br>Total Population: {selectedCtPop}
+         <br>
+         <br>Mode Share
+         <br>Active: {selectedPercActive}%  
+         Transit:{selectedPercTransit}%  
+         Auto:{selectedPercAuto}%  
         </div>
     
-    <div id="slider">
+   <!-- <div id="slider">
         
         Satellite
         <label class="switch">
@@ -178,10 +228,11 @@
             <span class="slider round"></span>
           </label>
 
-    </div>
+    </div>-->
 
-
-
+<div id = 'reset'>
+    <button on:click = {reset}> reset</button>
+</div>
 
 	<div id="map"></div>
 
@@ -196,12 +247,18 @@
 		background-color: var(--brandDarkBlue);
 	}
 	
-	main {
+	
+    main {
 		margin: auto;
 		width: 100%;
 		height: 100%;
 	}
 
+    #test {
+        position: relative;
+        top: 700px;
+        left: 1160px;
+    }
 	#map {
 		height: 100%;
 		width: 100%;
@@ -244,7 +301,7 @@
     background: #2b1102;
     color: rgb(231, 226, 226);
     width: 260px;
-    top: 650px;
+    top: 570px;
     left: 1200px;
     margin-top: 10px;
     padding: 10px;
@@ -252,7 +309,13 @@
     opacity: 1;
 }
 
-    #slider {
+    #reset {
+        position: absolute;
+        top: 15px;
+        left: 260px;
+    }
+
+  /*  #slider {
         position: relative;
         width: 60px;
         height: 34px;
@@ -311,7 +374,7 @@
     -ms-transform: translateX(26px);
     transform: translateX(26px);
 }
-
+*/
 /* Rounded sliders */
     .slider.round {
     border-radius: 34px;
