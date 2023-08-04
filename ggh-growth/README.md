@@ -33,10 +33,7 @@ The following describes the technical steps:
 - Create separate tables for 2021 DAs and 2006 DAs
     
 3. Filter the downloaded DA boundaries for just those within the GGH.
-4. Download and left-join data for
-
-
-   for each DA. Do this for 2006 and 2021.
+4. Download and left-join data for each DA. Do this for 2006 and 2021.
 5. Create summary table of growth for each sub-region - i.e. change in pop, households, dwellings, dwellings by structural type - by aggregating and summing DA-level data by sub-region for the two years, then join by the sub-region and compute the difference between the two years
 
 |Census Variables                    |              2006                     |              2021              |              Notes        |
@@ -46,6 +43,7 @@ The following describes the technical steps:
 |Total households,                     |||
 |Total dwellings                     |||(all dwellings, not just occupied), and|
 |Dwellings by structural type        ||| (there are 7-8ish categories)|
+
 ### B) Classifying DAs
 
 We now need to classify DAs whether they are within or outside the 2006 growth boundary, as well as Urban Growth Centres and near transit
@@ -82,4 +80,38 @@ This will tell us what percent of a region's new development is new 'greenfield'
 
 ## Part 2) GHG Emission Estimates and Scenario Testing
 
-TBD
+All work within `ghg-analysis` folder. All data are linked to 2021 DAs. Do all work in Python/Jupyter, since there's a chance the input data will be updated.
+
+### A) Estimating Household Transport Emissions
+
+The file `input-vkt-by-da-estimate.csv` are estimates of average Vehicle Kilometres Travelled (VKT) per household for each DA in the study area. This is a daily total for a weekday in 2016 (yes this isn't great, but the best we have)
+
+The goal for this part is to estimate the average level of household GHG emissions for transport for each DA based on this data.
+
+This will be a rough estimate, but should be possible based on the following.
+
+- Finding the total GHG provincial emissions for household travel from [here](https://www150.statcan.gc.ca/t1/tbl1/en/cv.action?pid=3810009701)
+- Getting a provincial household average simply by dividing by the number of households
+- Then up- or down-weighting this number by the average VKT - a base assumption would be that daily VKT is proportional to yearly transport emissions. This might require more research to see what the best method here is, and validating against any other published aggregate statistics (to make sure we're in the right ballpark)
+
+Create an output table that is the same as the input, but with a column for estimate yearly emissions.
+
+### B) Summarizing Emissions by Region
+
+Using the output of A) plus the data in `input-ghg-ontario.csv` which is an estimate of GHG emissions stemming from household energy use by DA to summarize...
+
+- Total emissions for each region, outer-ring, inner-ring, and overall
+- Average emissions by household for each region, outer-ring, inner-ring, and overall (these averages should be weighted by the number of households in each DA)
+- Do the above for energy, transport, and total emissions
+
+### C) Estimating Average GHG Emissions for Different Neighbourhood Types
+
+For the following types of neighbourhoods, estimate average household emissions (transport + energy). Use the same interpolation method created in Part 1B where necessary.
+
+- Inside and outside Urban Growth Centres
+- Inside and outside 1km transit buffers
+- Inside and outside the 2006 Built boundary
+- Outside the built boundary AND population density of >= 100 people/km2 (i.e. not rural)
+- Inside the built boundary AND population density >= 5000 people/km2
+- Inside the built boundary AND population density >= 10000 people/km2
+
