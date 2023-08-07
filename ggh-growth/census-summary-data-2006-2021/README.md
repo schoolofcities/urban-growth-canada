@@ -1,7 +1,7 @@
 Folder Structure:
 
 ggh-growth
-    > Census File Handling
+    > census-file-handling
         > Data
             > Census Data
                 Census2006.csv
@@ -24,8 +24,18 @@ ggh-growth
     > census-summary-data-2006-2021
         Codes and exported results are saved here
         > part-a-results
+            tables generated from Part A - Census Data Cleaning_CSD2006.ipynb code
+            the numbers for 2006 uses CSD data for 2006 and DA sum for 2021. This is due to the inconsistency between the DA sum and CSD sum for each geographical region, so we used CSD data for 2006. 
 
-        Individual tables of each census variables and their changes within Built Boundary, UGC, and Transit Buffer is saved in the > summarizing-results folder
+        > part-b-results
+            two tables of the DAs in southern Ontario, for 2006 and 2021. 
+
+        > part-c-results
+            tables generated from Part A - Census Data Cleaning_DA2006.ipynb code. This data uses number summed from all DAs for 2006. 
+
+            > summarizing-results
+
+                Individual tables of each census variables and their changes within Built Boundary, UGC, and Transit Buffer is saved in the > summarizing-results folder
 
 Census 2006:
     Total Private Dwelling is downloaded from Scholars Geoportal while the others are downloaded from CHASS
