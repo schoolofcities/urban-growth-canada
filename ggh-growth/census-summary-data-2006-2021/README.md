@@ -1,6 +1,7 @@
-Folder Structure:
+# Folder Structure:
 
 ggh-growth
+
     > Census File Handling
         > Data
             > Census Data
