@@ -91,8 +91,20 @@ The goal for this part is to estimate the average level of yearly GHG emissions 
 This will be a rough estimate, but should be possible based on the following.
 
 - Finding the total GHG provincial emissions for household travel from [here](https://www150.statcan.gc.ca/t1/tbl1/en/cv.action?pid=3810009701)
-- Getting a provincial household average simply by dividing by the number of households
-- Then up- or down-weighting this number by the average VKT - a base assumption would be that daily VKT is proportional to yearly transport emissions. This might require more research to see what the best method here is, and validating against any other published aggregate statistics (to make sure we're in the right ballpark)
+- Getting a provincial household average simply by dividing by the number of households, let's call this $\bar{g_o}$
+- By averaging emissions for 2019 and 2020, we get $\bar{g_o} = 0.0052$
+
+Then up- or down-weighting this number by the average VKT - a base assumption would be that daily VKT is proportional to yearly transport emissions. This might require more research to see what the best method here is, and validating against any other published aggregate statistics (to make sure we're in the right ballpark)
+
+For each DA $i$, we have the number of households $h_i$ and the average daily VKT per household, $v_i$
+
+We want to estimate the transportation fuel emissions per household for each DA, $g_i$.
+
+$$ g_i = \bar{g_o} \frac{v_i}{\bar{v_i}} $$
+
+Where $\bar{v_i}$ is the average household VKT in the region, computed as follows:
+
+$$ \bar{v_i} = \frac{\sum_i v_i h_i}{\sum_i h_i} $$
 
 Create an output table that is the same as the input, but with a column for estimate yearly emissions.
 
