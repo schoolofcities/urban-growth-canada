@@ -148,9 +148,14 @@
 
         map.setPaintProperty ('suburbs-project-cma' , 'fill-color' , 'red');
 
+       
+
     });
 
     let isChecked = false;
+
+    
+    
  
   function toggleCheckbox() {
  	isChecked = !isChecked;
@@ -246,43 +251,37 @@ function reset() {
 
 
 
-        <label>
-            <input type="checkbox" on:change={toggleCheckbox}>Satellite View
-        </label>
+        <div id="satellite-switch">
+            <p>
+                <input type="checkbox" on:change={toggleCheckbox}>
+                Satellite View
+            </p>
+        </div>
 
-
+        <div class="bar"></div>
 
         <div id="box">
-            CTUID: {selectedCtuid}
-            <br>Classification: {selectedClass}
-            <br>Total Population: {selectedCtPop}
-            <br>
-            <br>Mode Share
-            <br>Active: {selectedPercActive}%  
-            Transit:{selectedPercTransit}%  
-            Auto:{selectedPercAuto}%  
+            <p>
+                Selected Census Tract: {selectedCtuid}
+                <br>
+                Classification: <b>{selectedClass}</b>
+                <br>
+                Population (2021): {parseInt(selectedCtPop).toLocaleString()}
+                <br>
+                Mode Share (Journey to Work):
+                <br>
+                Active: {selectedPercActive}% |  
+                Transit:{selectedPercTransit}% |
+                Auto:{selectedPercAuto}%  
+            </p>
        </div>
+
+       <div class="bar"></div>
 
        <p>
             This map was built by QQQ and QQQ at the School of Cities. The code for this map is on GitHub
         </p>
     </div>
-
-    
-    
-   <!-- <div id="slider">
-        
-        Satellite
-        <label class="switch">
-            <input type="checkbox">
-            <span class="slider round"></span>
-          </label>
-
-    </div>-->
-
-    <!-- <div id = 'reset'>
-        <button on:click = {reset}> reset</button>
-    </div> -->
 
 	<div id="map"></div>
 
@@ -330,8 +329,8 @@ function reset() {
     }
 
     p {
-        font-size: 15px;
-        font-family: TradeGothicBold;
+        font-size: 13px;
+        font-family: sans-serif;
         margin: 0px;
         padding: 0px;
         padding-left: 10px;
@@ -347,7 +346,7 @@ function reset() {
 
     #content {
         width: 300px;
-        height: 460px;
+        /* height: 460px; */
         position: absolute;
         top: 5px;
         left: 5px;
@@ -383,14 +382,7 @@ function reset() {
     }
 
     #box {
-        position: absolute;
-        font: 14px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-        background: #2b1102;
-        color: rgb(231, 226, 226);
-        width: 260px;
-        margin-top: 10px;
-        padding: 10px;
-        overflow: visible;
+        /* display: none; */
         opacity: 1;
     }
 
