@@ -19,7 +19,7 @@
     
         
     // initial cma selected
-	let cmaSelected = '';
+	let cmaSelected = 'Toronto';
     let selectedPop = '-';
     let selectedActive = '-';
     let selectedTransit = '-';
@@ -155,15 +155,14 @@
   function toggleCheckbox() {
  	isChecked = !isChecked;
  	if (isChecked) {
-    map.setPaintProperty('suburbs-project-ct', 'fill-opacity', 0.50);
-    map.setPaintProperty('mapbox-satellite', 'raster-opacity', 1.00);
+        map.setPaintProperty('suburbs-project-ct', 'fill-opacity', 0.42);
+        map.setPaintProperty('mapbox-satellite', 'raster-opacity', 1.00);
  	} 
     else {
-    map.setPaintProperty('suburbs-project-ct', 'fill-opacity', 0.68);
-    map.setPaintProperty('mapbox-satellite', 'raster-opacity', 0.00); 	
+        map.setPaintProperty('suburbs-project-ct', 'fill-opacity', 0.7);
+        map.setPaintProperty('mapbox-satellite', 'raster-opacity', 0);
     }
-
-  };
+    };
 
 function reset() {
     cmaX = '';
@@ -185,7 +184,17 @@ function reset() {
         
 
     <div id="content">
+
         <h1>Canadian Suburbs Atlas</h1>
+
+        <div class="bar"></div>
+
+        <p>
+            This map visualizes how suburbanized Canadian cities are. Read about the methods <a href="https://www.canadiansuburbs.ca/research-papers/">here</a>. Select below to view a map and stats for a specific Census Metropolitan Area (CMA).
+        </p>
+
+        <div class="bar"></div>
+
         <Select 
             items={cmaAll} 
             value={cmaSelected} 
@@ -203,12 +212,15 @@ function reset() {
             --item-is-active-color="black"
             --item-is-active-bg="lightgrey"
         />
+
+        <div class="bar"></div>
+
         <div id="data">
             Population: {selectedPop}
-            <br>Active: {selectedActive}%
-            <br>Transit:{selectedTransit}%
-            <br>Auto: {selectedAuto}%
-            <br>Exurban: {selectedExurban}%
+            Active: {selectedActive}%
+            Transit:{selectedTransit}%
+            Auto: {selectedAuto}%
+            Exurban: {selectedExurban}%
         </div>
         <label>
             <input type="checkbox" on:change={toggleCheckbox}>Satellite View
@@ -223,6 +235,10 @@ function reset() {
             Transit:{selectedPercTransit}%  
             Auto:{selectedPercAuto}%  
        </div>
+
+       <p>
+            This map was built by QQQ and QQQ at the School of Cities. The code for this map is on GitHub
+        </p>
     </div>
 
     
@@ -260,6 +276,7 @@ function reset() {
         padding: 0px;
 		width: 100%;
 		height: 100%;
+        
 	}
 
     #test {
@@ -271,6 +288,7 @@ function reset() {
 	#map {
 		height: 100%;
 		width: 100%;
+        min-width: 350px;
 		position: absolute;
 		z-index: -99;
 	}
@@ -280,17 +298,46 @@ function reset() {
         font-family: TradeGothicBold;
         margin: 0px;
         padding: 10px;
+        padding-bottom: 5px;
+        color: var(--brandDarkBlue);
+    }
+
+    p {
+        font-size: 15px;
+        font-family: TradeGothicBold;
+        margin: 0px;
+        padding: 0px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        color: var(--brandGray70);
+    }
+
+    a {
+        color: var(--brandMedBlue);
     }
 
     #content {
         width: 300px;
-        height: 400px;
+        height: 460px;
         position: absolute;
-        top: 1px;
-        left: 1px;
+        top: 5px;
+        left: 5px;
         background-color: white; 
         border: solid 1px lightgrey;
+        border-radius: 5px;
         z-index: 1; 
+    }
+
+    .bar {
+        height: 1px;
+        width: 290px;
+        background-color: var(--brandDarkBlue);
+        padding: 0px;
+        margin: 0px;
+        margin-left: 5px;
+        opacity: 0.25;
     }
 
     #select p {
