@@ -1,10 +1,9 @@
 <script>
-	import { onMount } from 'svelte'
+	import { onMount } from 'svelte';
 	import mapboxgl from "mapbox-gl";
-    import cmaSummary from './suburb-classification-map/data/cma-summary.json';
-    import Typeahead from "svelte-typeahead";
+    import cmaSummary from './data/cma-summary.json';
     import Select from 'svelte-select';
-	//import '../../assets/global-styles.css';
+	import '../../assets/global-styles.css';
 
 	mapboxgl.accessToken = 'pk.eyJ1Ijoic2Nob29sb2ZjaXRpZXMiLCJhIjoiY2w2Z2xhOXprMTYzczNlcHNjMnNvdGlmNCJ9.lOgVHrajc1L-LlU0as2i2A';
 
@@ -183,18 +182,14 @@ function reset() {
 
 <main>
 
-<div id= "test">    
-    <label>
-        <input type="checkbox" on:change={toggleCheckbox}>
-    </label>
-</div>
-
-    <div id="select">
         
+
+    <div id="content">
+        <h1>Canadian Suburbs Atlas</h1>
         <Select 
             items={cmaAll} 
             value={cmaSelected} 
-            clearable={true} 
+            clearable={false} 
             showChevron={true} 
             on:input={handleSelect}
             --background="white"
@@ -209,24 +204,28 @@ function reset() {
             --item-is-active-bg="lightgrey"
         />
         <div id="data">
-        Population: {selectedPop}
-        <br>Active: {selectedActive}%
-        <br>Transit:{selectedTransit}%
-        <br>Auto: {selectedAuto}%
-        <br>Exurban: {selectedExurban}%
-    </div>
+            Population: {selectedPop}
+            <br>Active: {selectedActive}%
+            <br>Transit:{selectedTransit}%
+            <br>Auto: {selectedAuto}%
+            <br>Exurban: {selectedExurban}%
+        </div>
+        <label>
+            <input type="checkbox" on:change={toggleCheckbox}>Satellite View
+        </label>
+        <div id="box">
+            CTUID: {selectedCtuid}
+            <br>Classification: {selectedClass}
+            <br>Total Population: {selectedCtPop}
+            <br>
+            <br>Mode Share
+            <br>Active: {selectedPercActive}%  
+            Transit:{selectedPercTransit}%  
+            Auto:{selectedPercAuto}%  
+       </div>
     </div>
 
-    <div id="box">
-         CTUID: {selectedCtuid}
-         <br>Classification: {selectedClass}
-         <br>Total Population: {selectedCtPop}
-         <br>
-         <br>Mode Share
-         <br>Active: {selectedPercActive}%  
-         Transit:{selectedPercTransit}%  
-         Auto:{selectedPercAuto}%  
-        </div>
+    
     
    <!-- <div id="slider">
         
@@ -238,9 +237,9 @@ function reset() {
 
     </div>-->
 
-<div id = 'reset'>
-    <button on:click = {reset}> reset</button>
-</div>
+    <!-- <div id = 'reset'>
+        <button on:click = {reset}> reset</button>
+    </div> -->
 
 	<div id="map"></div>
 
@@ -257,7 +256,8 @@ function reset() {
 	
 	
     main {
-		margin: auto;
+		margin: auto 0px;
+        padding: 0px;
 		width: 100%;
 		height: 100%;
 	}
@@ -267,6 +267,7 @@ function reset() {
         top: 700px;
         left: 1160px;
     }
+    
 	#map {
 		height: 100%;
 		width: 100%;
@@ -274,28 +275,24 @@ function reset() {
 		z-index: -99;
 	}
 
-    #select {
-        width: 250px;
-        height: 30px;
+    h1 {
+        font-size: 27px;
+        font-family: TradeGothicBold;
+        margin: 0px;
+        padding: 10px;
+    }
+
+    #content {
+        width: 300px;
+        height: 400px;
         position: absolute;
-        top: 5px;
-        left: 5px;
+        top: 1px;
+        left: 1px;
         background-color: white; 
-        border: solid 1px var(--brandDarkBlue);
+        border: solid 1px lightgrey;
         z-index: 1; 
     }
 
-    #data {
-        display: flex;
-        font-size: large;
-        width: 250px;
-        background-color: aqua;
-        justify-content: center;
-        align-items: center;
-        border: 2px solid black;
-        
-    }
-    
     #select p {
         font-size: 12px;
         margin: 0px;
@@ -303,19 +300,24 @@ function reset() {
         padding-left: 20px;
     }
 
+    #data {
+        display: flex;
+        width: 300px;
+        justify-content: center;
+        align-items: center;        
+    }
+
     #box {
-    position: absolute;
-    font: 14px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    background: #2b1102;
-    color: rgb(231, 226, 226);
-    width: 260px;
-    top: 570px;
-    left: 1200px;
-    margin-top: 10px;
-    padding: 10px;
-    overflow: visible;
-    opacity: 1;
-}
+        position: absolute;
+        font: 14px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        background: #2b1102;
+        color: rgb(231, 226, 226);
+        width: 260px;
+        margin-top: 10px;
+        padding: 10px;
+        overflow: visible;
+        opacity: 1;
+    }
 
     #reset {
         position: absolute;
