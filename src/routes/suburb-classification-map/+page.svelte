@@ -53,7 +53,7 @@
         let cmauid = filteredData.cmauid.toString();
         
         //change data values based on cma selected
-        selectedPop = (filteredData.pop2021).toLocaleString();
+        selectedPop = (filteredData.pop2021);
         selectedActive = ((filteredData.active) * 100).toFixed(1);
         selectedTransit = ((filteredData.transit) * 100).toFixed(1);
         selectedAuto = ((filteredData.auto) * 100).toFixed(1);
@@ -215,16 +215,43 @@ function reset() {
 
         <div class="bar"></div>
 
-        <div id="data">
-            Population: {selectedPop}
-            Active: {selectedActive}%
-            Transit:{selectedTransit}%
-            Auto: {selectedAuto}%
-            Exurban: {selectedExurban}%
+        <div id="legend-wrapper">
+            <svg id="legend"  width="300" height="130">
+                
+                <text x="10" y="20" class="legend-text" font-size="12" fill="black">Population (2021): {selectedPop.toLocaleString()}</text>
+
+                <rect class="legend-bar" x="30" y="30" width="{200 * selectedActive / 100}" height="15"/>
+                <rect class="legend-box" x="10" y="30" width="15" height="15" fill="#8DBF2E" />
+                <text x="30" y="42" class="legend-text" font-size="12" fill="black">Active Core: <tspan font-weight="bold">{selectedActive}%</tspan> ({Math.round(selectedPop * selectedActive / 100).toLocaleString()} people)</text>
+
+                <rect class="legend-bar" x="30" y="50" width="{200 * selectedTransit / 100}" height="15"/>
+                <rect class="legend-box" x="10" y="50" width="15" height="15" fill="#00A189" />
+                <text x="30" y="62" class="legend-text" font-size="12" fill="black">Transit Suburb: <tspan font-weight="bold">{selectedTransit}%</tspan> ({Math.round(selectedPop * selectedTransit / 100).toLocaleString()} people)</text>
+
+                <rect class="legend-bar" x="30" y="70" width="{250 * selectedAuto / 100}" height="15"/>
+                <rect class="legend-box" x="10" y="70" width="15" height="15" fill="#F1C500" />
+                <text x="30" y="82" class="legend-text" font-size="12" fill="black">Auto Suburb: <tspan font-weight="bold">{selectedAuto}%</tspan> ({Math.round(selectedPop * selectedAuto / 100).toLocaleString()} people)</text>
+
+                <rect class="legend-bar" x="30" y="90" width="{200 * selectedExurban / 100}" height="15"/>
+                <rect class="legend-box" x="10" y="90" width="15" height="15" fill="#f7f2df" />
+                <text x="30" y="102" class="legend-text" font-size="12" fill="black">Exurb: <tspan font-weight="bold">{selectedExurban}%</tspan> ({Math.round(selectedPop * selectedExurban / 100).toLocaleString()} people)</text>
+
+                <rect class="legend-box" x="10" y="110" width="15" height="15" fill="#D0D1C9" />
+                <text x="30" y="122" class="legend-text" font-size="12" fill="black">Unclassified / No Data: 0%</text>
+
+            </svg>
         </div>
+
+        <div class="bar"></div>
+
+
+
         <label>
             <input type="checkbox" on:change={toggleCheckbox}>Satellite View
         </label>
+
+
+
         <div id="box">
             CTUID: {selectedCtuid}
             <br>Classification: {selectedClass}
@@ -340,18 +367,19 @@ function reset() {
         opacity: 0.25;
     }
 
-    #select p {
-        font-size: 12px;
-        margin: 0px;
-        padding: 0px;
-        padding-left: 20px;
+    #legend {
+        background-color: white;
     }
 
-    #data {
-        display: flex;
-        width: 300px;
-        justify-content: center;
-        align-items: center;        
+    .legend-box {
+        stroke: white;
+        stroke-width: 0.5px;
+    }
+
+    .legend-bar {
+        fill: #efefef;
+        stroke: #cecece;
+        stroke-width: 0.5px;
     }
 
     #box {
