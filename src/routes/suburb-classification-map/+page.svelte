@@ -27,7 +27,7 @@
     let selectedAuto = '-';
     let selectedExurban = '-';
 
-    $: console.log(cmaPopulation);
+   // $: console.log(cmaPopulation);
 
     // create map variable to fill in with onMount
     let map;
@@ -37,6 +37,7 @@
     let selectedPercActive =''
     let selectedPercTransit =''
     let selectedPercAuto = ''
+    let ctuid = '0';
 
 
     // function for what to do when new cma is selected
@@ -67,7 +68,7 @@
 
         // filter the base map data
         map.setFilter(
-            "suburbs-project-ct", 
+            "suburbs-project-cma", 
             [
                 "match",
                 ["get", "cmaname"],
@@ -95,9 +96,10 @@
             center: [-73.628, 45.575], 
             zoom: 9,
             maxZoom: 14,
-            minZoom: 1,
+            minZoom: 5,
             scrollZoom: true,
             attributionControl: false
+
         });
 
         map.addControl(new mapboxgl.NavigationControl(), 'top-right');
@@ -118,17 +120,6 @@
             map.getCanvas().style.cursor = '';
         });
 
-        map.on('click', 'suburbs-project-ct', (e) => {
-            new mapboxgl.Popup()
-                .setLngLat(e.lngLat)
-                .setHTML("CTUID: " + e.features[0].properties.ctuid + "Class:"+ e.features[0].properties.class) //indexes the GeoJSON code for the CTUID from properties
-                .addTo(map);
-        });
-
-       /* map.on('click', 'suburbs-project-ct', (e) => {		
-			map.setPaintProperty('suburbs-project-ct' , 'fill-color' , 'pink')
-        });*/
-
         map.on('click' , 'suburbs-project-ct' , (e) => {
             selectedCtuid = e.features[0].properties.ctuid;
             selectedClass = e.features[0].properties.class;
@@ -139,10 +130,25 @@
 
         })
 
-        map.on('click' , 'suburbs-project-ct' , () => {
-            map.setPaintProperty('suburbs-project-cma' , 'fill-color' , 'red');
-        }
-        );
+        map.on('click', 'suburbs-project-ct', (e) => {		
+
+			var features = map.queryRenderedFeatures(e.point, { layers: ['suburbs-project-ct'] });
+
+			if (ctuid != features[0].properties.ctuid) {
+				var style = [
+					"match",
+					["get", "ctuid"],
+					[features[0].properties.ctuid],
+					"#6D247A",
+					"#fff",
+				]
+				map.setPaintProperty('suburbs-project-ct', 'fill-outline-color', style)
+				ctuid = features[0].properties.ctuid
+			} 
+		});
+
+        map.setPaintProperty ('suburbs-project-cma' , 'fill-color' , 'red');
+
     });
 
     let isChecked = false;
@@ -161,7 +167,9 @@
   };
 
 function reset() {
-    console.log('it worked');
+    cmaX = '';
+    cmaY = '';
+    cmaSelected = '';
 }
  
   
@@ -186,8 +194,8 @@ function reset() {
         <Select 
             items={cmaAll} 
             value={cmaSelected} 
-            clearable={false} 
-            showChevron=true 
+            clearable={true} 
+            showChevron={true} 
             on:input={handleSelect}
             --background="white"
             --height="20px"
