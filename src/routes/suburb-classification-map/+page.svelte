@@ -27,7 +27,7 @@
     let selectedAuto = 100;
     let selectedExurban = 0;
     let selectedUnclassified = 0;
-    $: selectedUnclassified = 100 - selectedActive - selectedTransit - selectedAuto - selectedExurban;
+    $: selectedUnclassified = (100 - selectedActive - selectedTransit - selectedAuto - selectedExurban).toFixed(2);
 
     // create map variable to fill in with onMount
     let selectedCtuid = '';
@@ -291,8 +291,9 @@ function reset() {
                 <rect class="legend-box" x="10" y="90" width="15" height="15" fill="#f7f2df" />
                 <text x="30" y="102" class="legend-text" font-size="12" >Exurb: <tspan font-weight="bold">{selectedExurban}%</tspan> ({Math.round(selectedPop * selectedExurban / 100).toLocaleString()} people)</text>
 
+                <rect class="legend-bar" x="30" y="110" width="{200 * selectedUnclassified / 100}" height="15"/>
                 <rect class="legend-box" x="10" y="110" width="15" height="15" fill="#D0D1C9" />
-                <text x="30" y="122" class="legend-text" font-size="12" >Unclassified / No Data: 0%</text>
+                <text x="30" y="122" class="legend-text" font-size="12" >Unclassified / No Data: <tspan font-weight="bold">{selectedUnclassified}%</tspan> ({Math.round(selectedPop * selectedUnclassified / 100).toLocaleString()} people)</text>
 
             </svg>
         </div>
@@ -331,11 +332,13 @@ function reset() {
        <p>
             This map was built by Remus Herteg and Jeff Allen at the School of Cities. Code is on <a>GitHub</a>
         </p>
+
     </div>
 
 	<div id="map"></div>
 
 </main>
+
 
 
 <style>
@@ -345,7 +348,6 @@ function reset() {
 		margin: 0px;
 		background-color: var(--brandDarkBlue);
 	}
-	
 	
     main {
 		margin: auto 0px;
@@ -447,73 +449,4 @@ function reset() {
         left: 260px;
     }
 
-  /*  #slider {
-        position: relative;
-        width: 60px;
-        height: 34px;
-        top: 650px;
-        left: 1140px;
-
-    }
-
-    .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-}
-
-    .switch input { 
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-    .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-}
-
-    .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-}
-
-    input:checked + .slider {
-  background-color: #2196F3;
-}
-
-    input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-}
-
-    input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-}
-*/
-/* Rounded sliders
-    .slider.round {
-    border-radius: 34px;
-}
-
-    .slider.round:before {
-    border-radius: 50%;
-}
-	 */
 </style>
