@@ -20,12 +20,14 @@
     let map;
         
     // initial cma selected
-	let cmaSelected = 'Toronto';
-    let selectedPop = '-';
-    let selectedActive = '-';
-    let selectedTransit = '-';
-    let selectedAuto = '-';
-    let selectedExurban = '-';
+	let cmaSelected = 'All CMAs';
+    let selectedPop = 15000000;
+    let selectedActive = 0;
+    let selectedTransit = 0;
+    let selectedAuto = 100;
+    let selectedExurban = 0;
+    let selectedUnclassified = 0;
+    $: selectedUnclassified = 100 - selectedActive - selectedTransit - selectedAuto - selectedExurban;
 
     // create map variable to fill in with onMount
     let selectedCtuid = '';
@@ -58,42 +60,97 @@
         selectedExurban = ((filteredData.exurban) * 100).toFixed(1);
 
         // pan and zoom to the new cma - reset pitch and bearing if they changed
-        map.setZoom(9);
-        map.setBearing(0);
-        map.setPitch(0);
-        map.panTo([cmaX, cmaY]);
+        if (cmaSelected !== "All CMAs") {
+            map.setZoom(9);
+            map.setBearing(0);
+            map.setPitch(0);
+            map.panTo([cmaX, cmaY]);
 
-        // filter the base map data
-        map.setFilter(
-            "suburbs-project-cma", 
-            [
-                "match",
-                ["get", "cmaname"],
-                [cmaSelected],
-                true,
-                false
-            ]
-        );
-        map.setFilter(
-            "suburbs-project-cma", 
-            [
-                "match",
-                ["get", "CMAUID"],
-                [cmauid],
-                true,
-                false
-            ]
-        );
+            map.setPaintProperty('suburbs-project-cma-fill', 'fill-opacity', 0.8);
+
+            map.setFilter('suburbs-project-cma-fill',
+                [
+                "all",
+                [
+                    "match",
+                    ["get", "CMANAME"],
+                    [
+                    "Granby",
+                    "Saint-Hyacinthe",
+                    "North Bay",
+                    "Sault Ste. Marie",
+                    "Medicine Hat",
+                    "Wood Buffalo",
+                    ],
+                    false,
+                    true
+                ],
+                [
+                    "match",
+                    ["get", "CMAUID"],
+                    [cmauid.toString()],
+                    false,
+                    true
+                ]
+            ])
+
+            map.setFilter('suburbs-project-cma-highlight',
+                [
+                "all",
+                [
+                    "match",
+                    ["get", "CMAUID"],
+                    [cmauid],
+                    true,
+                    false
+                ]
+                ]
+            )
+
+        } else {
+            map.setPaintProperty('suburbs-project-cma-fill', 'fill-opacity', 0);
+            map.setFilter('suburbs-project-cma-fill',
+                [
+                "all",
+                [
+                    "match",
+                    ["get", "CMANAME"],
+                    [
+                    "Granby",
+                    "Saint-Hyacinthe",
+                    "North Bay",
+                    "Sault Ste. Marie",
+                    "Medicine Hat",
+                    "Wood Buffalo"
+                    ],
+                    false,
+                    true
+                ]
+            ])
+
+            map.setFilter('suburbs-project-cma-highlight',
+                [
+                "all",
+                [
+                    "match",
+                    ["get", "CMAUID"],
+                    ["000"],
+                    true,
+                    false
+                ]
+                ]
+            )
+        }
     }
 
     onMount(() => {
         map = new mapboxgl.Map({
             container: 'map', 
             style: 'mapbox://styles/schoolofcities/cli0otj3n04m601pa9s0s0mc4',
-            center: [-73.628, 45.575], 
-            zoom: 9,
+            center: [-97, 55], 
+            zoom: 4,
             maxZoom: 14,
-            minZoom: 5,
+            minZoom: 3,
             scrollZoom: true,
             attributionControl: false
         });
