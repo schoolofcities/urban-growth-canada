@@ -181,7 +181,7 @@
             selectedPercTransit = ((e.features[0].properties.transit)*100).toFixed(1);
             selectedPercAuto = ((e.features[0].properties.auto)*100).toFixed(1);
 
-        })
+        });
 
         map.on('click', 'suburbs-project-ct', (e) => {		
 
@@ -329,7 +329,7 @@ function reset() {
        <div class="bar"></div>
 
        <p>
-            This map was built by QQQ and QQQ at the School of Cities. The code for this map is on GitHub
+            This map was built by Remus Herteg and Jeff Allen at the School of Cities. Code is on <a>GitHub</a>
         </p>
     </div>
 
