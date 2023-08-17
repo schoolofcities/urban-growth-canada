@@ -17,6 +17,7 @@
         .sort((a, b) => b.pop2021 - a.pop2021)
         .map(item => item.pop2021);
     
+    let map;
         
     // initial cma selected
 	let cmaSelected = 'Toronto';
@@ -26,10 +27,7 @@
     let selectedAuto = '-';
     let selectedExurban = '-';
 
-   // $: console.log(cmaPopulation);
-
     // create map variable to fill in with onMount
-    let map;
     let selectedCtuid = '';
     let selectedClass = '';
     let selectedCtPop = ''
@@ -98,7 +96,6 @@
             minZoom: 5,
             scrollZoom: true,
             attributionControl: false
-
         });
 
         map.addControl(new mapboxgl.NavigationControl(), 'top-right');
@@ -148,8 +145,6 @@
 
         map.setPaintProperty ('suburbs-project-cma' , 'fill-color' , 'red');
 
-       
-
     });
 
     let isChecked = false;
@@ -186,8 +181,6 @@ function reset() {
 
 <main>
 
-        
-
     <div id="content">
 
         <h1>Canadian Suburbs Atlas</h1>
@@ -223,26 +216,26 @@ function reset() {
         <div id="legend-wrapper">
             <svg id="legend"  width="300" height="130">
                 
-                <text x="10" y="20" class="legend-text" font-size="12" fill="black">Population (2021): {selectedPop.toLocaleString()}</text>
+                <text x="10" y="20" class="legend-text" font-size="12" >Population (2021): {selectedPop.toLocaleString()}</text>
 
                 <rect class="legend-bar" x="30" y="30" width="{200 * selectedActive / 100}" height="15"/>
                 <rect class="legend-box" x="10" y="30" width="15" height="15" fill="#8DBF2E" />
-                <text x="30" y="42" class="legend-text" font-size="12" fill="black">Active Core: <tspan font-weight="bold">{selectedActive}%</tspan> ({Math.round(selectedPop * selectedActive / 100).toLocaleString()} people)</text>
+                <text x="30" y="42" class="legend-text" font-size="12" >Active Core: <tspan font-weight="bold">{selectedActive}%</tspan> ({Math.round(selectedPop * selectedActive / 100).toLocaleString()} people)</text>
 
                 <rect class="legend-bar" x="30" y="50" width="{200 * selectedTransit / 100}" height="15"/>
                 <rect class="legend-box" x="10" y="50" width="15" height="15" fill="#00A189" />
-                <text x="30" y="62" class="legend-text" font-size="12" fill="black">Transit Suburb: <tspan font-weight="bold">{selectedTransit}%</tspan> ({Math.round(selectedPop * selectedTransit / 100).toLocaleString()} people)</text>
+                <text x="30" y="62" class="legend-text" font-size="12" >Transit Suburb: <tspan font-weight="bold">{selectedTransit}%</tspan> ({Math.round(selectedPop * selectedTransit / 100).toLocaleString()} people)</text>
 
                 <rect class="legend-bar" x="30" y="70" width="{250 * selectedAuto / 100}" height="15"/>
                 <rect class="legend-box" x="10" y="70" width="15" height="15" fill="#F1C500" />
-                <text x="30" y="82" class="legend-text" font-size="12" fill="black">Auto Suburb: <tspan font-weight="bold">{selectedAuto}%</tspan> ({Math.round(selectedPop * selectedAuto / 100).toLocaleString()} people)</text>
+                <text x="30" y="82" class="legend-text" font-size="12" >Auto Suburb: <tspan font-weight="bold">{selectedAuto}%</tspan> ({Math.round(selectedPop * selectedAuto / 100).toLocaleString()} people)</text>
 
                 <rect class="legend-bar" x="30" y="90" width="{200 * selectedExurban / 100}" height="15"/>
                 <rect class="legend-box" x="10" y="90" width="15" height="15" fill="#f7f2df" />
-                <text x="30" y="102" class="legend-text" font-size="12" fill="black">Exurb: <tspan font-weight="bold">{selectedExurban}%</tspan> ({Math.round(selectedPop * selectedExurban / 100).toLocaleString()} people)</text>
+                <text x="30" y="102" class="legend-text" font-size="12" >Exurb: <tspan font-weight="bold">{selectedExurban}%</tspan> ({Math.round(selectedPop * selectedExurban / 100).toLocaleString()} people)</text>
 
                 <rect class="legend-box" x="10" y="110" width="15" height="15" fill="#D0D1C9" />
-                <text x="30" y="122" class="legend-text" font-size="12" fill="black">Unclassified / No Data: 0%</text>
+                <text x="30" y="122" class="legend-text" font-size="12" >Unclassified / No Data: 0%</text>
 
             </svg>
         </div>
@@ -270,9 +263,9 @@ function reset() {
                 <br>
                 Mode Share (Journey to Work):
                 <br>
-                Active: {selectedPercActive}% |  
-                Transit:{selectedPercTransit}% |
-                Auto:{selectedPercAuto}%  
+                Active: {selectedPercActive}% |
+                Transit: {selectedPercTransit}% |
+                Auto: {selectedPercAuto}%  
             </p>
        </div>
 
@@ -329,15 +322,15 @@ function reset() {
     }
 
     p {
-        font-size: 13px;
-        font-family: sans-serif;
+        font-size: 12px;
+        font-family: Roboto;
         margin: 0px;
         padding: 0px;
         padding-left: 10px;
         padding-right: 10px;
         padding-bottom: 5px;
         padding-top: 5px;
-        color: var(--brandGray70);
+        color: var(--brandGray80);
     }
 
     a {
@@ -379,6 +372,11 @@ function reset() {
         fill: #efefef;
         stroke: #cecece;
         stroke-width: 0.5px;
+    }
+
+    .legend-text {
+        font-family: Roboto;
+        fill: var(--brandGray80);
     }
 
     #box {
@@ -452,7 +450,7 @@ function reset() {
     transform: translateX(26px);
 }
 */
-/* Rounded sliders */
+/* Rounded sliders
     .slider.round {
     border-radius: 34px;
 }
@@ -460,5 +458,5 @@ function reset() {
     .slider.round:before {
     border-radius: 50%;
 }
-	
+	 */
 </style>
