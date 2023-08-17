@@ -149,6 +149,13 @@ For the following types of neighbourhoods, estimate average household emissions 
 - Inside and outside Urban Growth Centres
 - Inside and outside 1km transit buffers
 - Inside and outside the 2006 Built boundary
+$$ R_i = \frac{\sum G_i w_i}{\sum H_i w_i} $$
+-  where <br>
+    $G_i$ is the total GHG emission in $DA_i$ <br>
+    $H_i$ is the total household in $DA_i$ <br>
+    $w_i$ is the ratio of area within / outside of BLT, UGC, TBF <br>
+    $R_i$ is the ghg emission per household within BLT, UGC, TBF
+
 - Outside the built boundary AND population density of >= 100 people/km2 (i.e. not rural)
 - Inside the built boundary AND population density >= 5000 people/km2
 - Inside the built boundary AND population density >= 10000 people/km2
