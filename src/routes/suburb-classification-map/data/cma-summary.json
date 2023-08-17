@@ -1,5 +1,17 @@
 [
   {
+    "cmauid": "00-",
+    "cmaname": "All CMAs",
+    "x": -97,
+    "y": 50,
+    "active": 0,
+    "transit": 0,
+    "auto": 1,
+    "exurban": 0,
+    "unclassified": 0,
+    "pop2021": 15000000
+  },
+  {
     "cmauid": "001",
     "cmaname": "St. John's",
     "x": -52.85872194,
