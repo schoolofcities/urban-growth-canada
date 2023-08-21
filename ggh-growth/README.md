@@ -138,7 +138,7 @@ Create an output table that is the same as the input, but with a column for esti
 
 Using the output of A) plus the data in `input-ghg-ontario.csv` which is an estimate of GHG emissions stemming from household energy use by DA to summarize...
 
-- Total emissions for each region, outer-ring, inner-ring, and overall
+- Total emissions for each municipality, outer-ring, inner-ring, and overall
 - Average emissions by household for each region, outer-ring, inner-ring, and overall (these averages should be weighted by the number of households in each DA)
 - Do the above for energy, transport, and total emissions
 
@@ -146,6 +146,7 @@ Using the output of A) plus the data in `input-ghg-ontario.csv` which is an esti
 
 For the following types of neighbourhoods, estimate average household emissions (transport + energy). Use the same interpolation method created in Part 1B where necessary.
 
+## C1)
 - Inside and outside Urban Growth Centres
 - Inside and outside 1km transit buffers
 - Inside and outside the 2006 Built boundary
@@ -156,6 +157,7 @@ $$ R_i = \frac{\sum G_i w_i}{\sum H_i w_i} $$
     $w_i$ is the ratio of area within / outside of BLT, UGC, TBF <br>
     $R_i$ is the ghg emission per household within BLT, UGC, TBF
 
+## C2)
 - Outside the built boundary AND population density of >= 100 people/km2 (i.e. not rural)
 - Inside the built boundary AND population density >= 5000 people/km2
 - Inside the built boundary AND population density >= 10000 people/km2
