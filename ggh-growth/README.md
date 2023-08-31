@@ -90,9 +90,47 @@ The goal for this part is to estimate the average level of yearly GHG emissions 
 
 This will be a rough estimate, but should be possible based on the following.
 
-- Finding the total GHG provincial emissions for household travel from [here](https://www150.statcan.gc.ca/t1/tbl1/en/cv.action?pid=3810009701)
-- Getting a provincial household average simply by dividing by the number of households
-- Then up- or down-weighting this number by the average VKT - a base assumption would be that daily VKT is proportional to yearly transport emissions. This might require more research to see what the best method here is, and validating against any other published aggregate statistics (to make sure we're in the right ballpark)
+### A1
+
+$$ \bar{g_o} = \frac{e_o*1000}{h_o} $$
+
+where: </br>
+-  $\bar{g_o}$ is the average household travel ghg emission in Ontario (tons / household)
+- $e_o$ is the total household travel ghg emissions in Ontario in 2020, obtained from [Stats Canada](https://www150.statcan.gc.ca/t1/tbl1/en/cv.action?pid=3810009701)
+(kilo-tons)
+- $h_o$ is the Total Household Count of Ontario (households)
+- By averaging ghg emissions for 2019 and 2020, we get $\bar{g_o} = 0.0052$
+
+
+### A2
+Calulating the weights to weight average ontario household travel ghg emission 
+
+$$ \bar{v_i} = \frac{\sum_i v_i h_i}{\sum_i hr_i} $$
+
+where:
+- $\bar{v_i}$ is the average daily household VKT in a region (km/household)
+- $v_i$ is the average daily VKT per household in DA $i$ (km/household)
+- $hr_i$ is the number of households in Da $i$ (household)
+- $\sum_i v_i h_i$ is summing the total VKT of each DAs in each region
+- $\sum_i hr_i$ is summing the 
+
+
+### A3
+
+To calulate household travel ghg emission in the Greater Golden Horseshoe (GGH), $\bar{g_o}$ is then up-or-down-weighted by the average daily VKT per household at the DA level.
+
+$$ g_i = \bar{g_o} \frac{v_i}{\bar{v_i}} $$
+
+where:
+- $g_i$ is the transportation fuel emissions per household for each DA (ton / household)
+-  $\bar{g_o}$ is the average household travel ghg emission in Ontario (tons / household)
+- $v_i$ is the average daily VKT per household in DA $i$ (km / household)
+- $\bar{v_i}$ is the average daily household VKT in a region (km/household)
+
+
+<b> Assumption: </b><br>
+The assumption would be that daily VKT is proportional to yearly transport emissions. This might require more research to see what the best method here is, and validating against any other published aggregate statistics (to make sure we're in the right ballpark).
+
 
 Create an output table that is the same as the input, but with a column for estimate yearly emissions.
 
@@ -100,7 +138,7 @@ Create an output table that is the same as the input, but with a column for esti
 
 Using the output of A) plus the data in `input-ghg-ontario.csv` which is an estimate of GHG emissions stemming from household energy use by DA to summarize...
 
-- Total emissions for each region, outer-ring, inner-ring, and overall
+- Total emissions for each municipality, outer-ring, inner-ring, and overall
 - Average emissions by household for each region, outer-ring, inner-ring, and overall (these averages should be weighted by the number of households in each DA)
 - Do the above for energy, transport, and total emissions
 
@@ -108,9 +146,18 @@ Using the output of A) plus the data in `input-ghg-ontario.csv` which is an esti
 
 For the following types of neighbourhoods, estimate average household emissions (transport + energy). Use the same interpolation method created in Part 1B where necessary.
 
+## C1)
 - Inside and outside Urban Growth Centres
 - Inside and outside 1km transit buffers
 - Inside and outside the 2006 Built boundary
+$$ R_i = \frac{\sum G_i w_i}{\sum H_i w_i} $$
+-  where <br>
+    $G_i$ is the total GHG emission in $DA_i$ <br>
+    $H_i$ is the total household in $DA_i$ <br>
+    $w_i$ is the ratio of area within / outside of BLT, UGC, TBF <br>
+    $R_i$ is the ghg emission per household within BLT, UGC, TBF
+
+## C2)
 - Outside the built boundary AND population density of >= 100 people/km2 (i.e. not rural)
 - Inside the built boundary AND population density >= 5000 people/km2
 - Inside the built boundary AND population density >= 10000 people/km2
